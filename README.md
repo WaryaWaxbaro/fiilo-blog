@@ -8,7 +8,7 @@ The project uses uuid as primary id
 Here is a link that shows how to set the uuid
 Using UUIDs to your new Rails 6 application [ITNEXT](https://itnext.io/using-uuids-to-your-rails-6-application-6438f4eeafdf).
 
-### Summary of the blog
+### Installation summary
 
 - Create migration `rails g migration enable_uuid`
 - Add _enable_extension 'pgcrypto'_ to the migration file as shown below
@@ -49,7 +49,7 @@ end
 Fiilo Blog uses _devise gem_ to authenticate users.
 heartcombo/devise [GitHub](https://github.com/heartcombo/devise).
 
-## Summary
+### Installation summary
 
 - Add `gem 'devise'` to gemfile and run `bundle install`
 - Run the generator `rails generate devise:install` and then follow the instructions
@@ -75,3 +75,17 @@ before_action :authenticate_user!
 
 - You can access the session for this scope:
   `user_session`
+
+## Testing
+
+The project uses `rspec-rails` for testing. [Rspec-rails](https://github.com/rspec/rspec-rails).
+
+### Installation summary
+
+- Add `rspec-rails` to both the `:development` and `:test `groups of your app’s Gemfile as shown below and run bundle install
+
+```
+group :development, :test do
+  gem 'rspec-rails', '~> 5.0.0'
+end
+```
