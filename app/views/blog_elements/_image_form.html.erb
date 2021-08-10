@@ -12,20 +12,11 @@
   <% end %>
 
   <%= form.hidden_field :post_id, value: post.id %>
-
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.rich_text_area :content %>
-  </div>
+  <%= form.hidden_field :element_type, value: 'image' %>
 
   <div class="field">
     <%= form.label :blog_image %>
-    <%= form.file_field :blog_image %>
-  </div>
-
-  <div class="field">
-    <%= form.label :element_type %>
-    <%= form.text_field :element_type %>
+    <%= form.file_field :blog_image, accept: 'image/*' %>
   </div>
 
   <div class="field">

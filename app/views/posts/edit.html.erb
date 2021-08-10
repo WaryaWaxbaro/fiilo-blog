@@ -1,6 +1,26 @@
 <h1>Editing Post</h1>
 
 <%= render 'form', post: @post %>
+<% if @post.blog_elements.exists? %>
+  <% @post.blog_elements.each do |element| %>
+    <% if element.paragraph? %>
+      <%= render 'blog_elements/paragraph_form', blog_element: element, post: @post %>
+    <% end %>
+
+    <% if element.image? %>
+      <% if element.blog_image.attached? %>
+        <div style="width: 300px;">
+          <%= image_tag element.blog_image, style: 'max-width: 100%; height: auto;' %>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<%= render 'blog_elements/paragraph_form', blog_element: @blog_element, post: @post %>
+<div style="margin-top: 20px;">
+  <%= render 'blog_elements/image_form', blog_element: @blog_element, post: @post %>
+</div>
 
 <%= link_to 'Show', @post %> |
 <%= link_to 'Back', posts_path %>

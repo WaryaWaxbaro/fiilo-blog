@@ -12,28 +12,14 @@
   <% end %>
 
   <%= form.hidden_field :post_id, value: post.id %>
+  <%= form.hidden_field :element_type, value: 'paragraph' %>
 
   <div class="field">
     <%= form.label :content %>
     <%= form.rich_text_area :content %>
   </div>
 
-  <div class="field">
-    <%= form.label :blog_image %>
-    <%= form.file_field :blog_image %>
-  </div>
-
-  <div class="field">
-    <%= form.label :element_type %>
-    <%= form.text_field :element_type %>
-  </div>
-
-  <div class="field">
-    <%= form.label :blog_image_caption %>
-    <%= form.text_field :blog_image_caption %>
-  </div>
-
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Add paragraph' %>
   </div>
 <% end %>

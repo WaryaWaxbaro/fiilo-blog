@@ -18,6 +18,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    @blog_element = @post.blog_elements.build
   end
 
   # POST /posts or /posts.json
