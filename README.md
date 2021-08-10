@@ -109,3 +109,63 @@ class Photo < ApplicationRecord
   has_one_attached :blog_photo
 end
 ```
+
+## WYSIWYG editor (Action text)
+
+- For more info about Active text visit [Action Text Overview](https://edgeguides.rubyonrails.org/action_text_overview.html).
+
+### Summary installation
+
+- `rails action_text:install`
+- For UUID, The generated migration for ActionText will also need to be updated to specify type: :uuid for the :record references line.
+
+```
+t.references :record, null: false, polymorphic: true, index: false, type: :uuid
+```
+
+## Bootstrap 5
+
+- Fiilo blog project is using bootstrap.
+
+### Summary installation
+
+- If using yarn run in the terminal of the project folder
+
+```
+yarn add bootstrap
+yarn add @popperjs/core
+
+// npm
+npm install bootstrap
+npm install @popperjs/core
+```
+
+- After adding the packages successfully the package.json file should have something like this
+
+```
+  "dependencies": {
+    "@popperjs/core": "^2.9.3",
+    ....
+    "bootstrap": "^5.1.0",
+  },
+```
+
+- Create `application.scss` file in `/javascript/stylesheets/application.scss`
+- After creating the file import bootstrap to the file as shown below
+
+```
+// javascript/stylesheets/application.scss
+
+// Bootstrap
+@import "bootstrap";
+```
+
+- Also import bootstrap and the `application.scss` created above to `/javascript/packs/application.js` as shown below
+
+```
+// Bootstrap
+import "bootstrap"
+import "../stylesheets/application"
+```
+
+- To test if the installation was fully succesful use bootstrap classes or just add modal example from bootstrap website
