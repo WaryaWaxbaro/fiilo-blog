@@ -89,3 +89,23 @@ group :development, :test do
   gem 'rspec-rails', '~> 5.0.0'
 end
 ```
+
+## File attachment with Active storage
+
+- The project will use Amazon S3 or Cloudinary in production but in development the project uses local
+
+- For more info about Active storage visit [Active storage overview](https://edgeguides.rubyonrails.org/active_storage_overview.html).
+
+### Summary installation
+
+- Uncomment or add `gem "image_processing", ">= 1.2"` in the gemfile
+- Run `rails active_storage:install` command
+- Fiilo blog project is using UUID as a primary Id. In order for Active storage to work well we need to modify active migration file to use UUID as primary id. Check the projects `db/migrate/20210810170024_create_active_storage_tables.active_storage.rb`
+- After that run `bin/rails db:migrate` command
+- After that add a attachment specification in the model
+
+```
+class Photo < ApplicationRecord
+  has_one_attached :blog_photo
+end
+```
