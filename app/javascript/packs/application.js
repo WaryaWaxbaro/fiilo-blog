@@ -18,3 +18,6 @@ require("@rails/actiontext")
 // Bootstrap
 import "bootstrap"
 import "../stylesheets/application"
+
+// Fontawesome
+import "@fortawesome/fontawesome-free/js/all";

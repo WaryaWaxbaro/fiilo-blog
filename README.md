@@ -169,3 +169,8 @@ import "../stylesheets/application"
 ```
 
 - To test if the installation was fully succesful use bootstrap classes or just add modal example from bootstrap website
+
+## Fontawesome icons
+
+- To install run `yarn add @fortawesome/fontawesome-free` or `npm install --save @fortawesome/fontawesome-free`
+- Add `import "@fortawesome/fontawesome-free/js/all";` to `/javascript/packs/application.js`
