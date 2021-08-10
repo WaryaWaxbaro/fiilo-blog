@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :blog_elements
   resources :posts
   devise_for :users
   resources :users
