@@ -43,3 +43,35 @@ class ApplicationRecord < ActiveRecord::Base
   self.implicit_order_column = :created_at
 end
 ```
+
+## Authentication
+
+Fiilo Blog uses _devise gem_ to authenticate users.
+heartcombo/devise [GitHub](https://github.com/heartcombo/devise).
+
+## Summary
+
+- Add `gem 'devise'` to gemfile and run `bundle install`
+- Run the generator `rails generate devise:install` and then follow the instructions
+- Add the below line to `config/environments/development.rb` as shown below
+  `config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }`
+- Generate user model
+
+```
+rails generate devise User
+```
+
+- To authenticate controller actions add
+
+```
+before_action :authenticate_user!
+```
+
+- To verify if a user is signed in, use the following helper:
+  `user_signed_in?`
+
+- For the current signed-in user, this helper is available:
+  `current_user`
+
+- You can access the session for this scope:
+  `user_session`
