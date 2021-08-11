@@ -1,0 +1,38 @@
+//Height
+.h-72 {
+  height: 72px;
+}
+
+// Navitem
+.navbar-item {
+  border-bottom: 1px solid transparent;
+  &:hover {
+    border-bottom: 1px solid $dark;
+  }
+}
+
+.navbar-item-active {
+  border-bottom: 1px solid $dark;
+}
+
+// Sidebar
+.sidebar-item {
+  &:hover {
+    background-color: $dark !important;
+    color: $light !important;
+  }
+}
+
+.sidebar-item-active {
+  background-color: $dark !important;
+}
+
+// Margin
+.mt-72 {
+  margin-top: 72px;
+}
+
+//z-index
+.z-to-1000 {
+  z-index: 1000;
+}

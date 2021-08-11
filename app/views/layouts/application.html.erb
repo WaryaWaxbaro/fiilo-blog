@@ -1,8 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>FiiloBlog</title>
+    <title><%= @title || "Fiilo Blog" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="<%= @description || "Fiilo Blog" %>">
+    <meta property="og:description" content="<%= @description || "Fiilo Blog" %>">
+    <meta property="og:title" content="<%= @title || "Fiilo Blog" %>">
+    <meta property="og:type" content="text">
+    <meta property="og:url" content="<%= @content_url || "Fiilo Blog" %>">
+    <!--    <meta property="og:image" content="<%#= asset_path("logo.png") %>">-->
+    <%#= favicon_link_tag asset_path("logo.png") %>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -11,8 +21,9 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+
+    <%= flash_messages %>
+    <%= render 'shared/navbar' %>
     <%= yield %>
   </body>
 </html>
