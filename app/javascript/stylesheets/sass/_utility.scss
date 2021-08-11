@@ -3,6 +3,15 @@
   height: 72px;
 }
 
+//width
+.w-280 {
+  width: 280px;
+}
+
+.w-0 {
+  width: 0;
+}
+
 // Navitem
 .navbar-item {
   border-bottom: 1px solid transparent;
@@ -25,6 +34,9 @@
 
 .sidebar-item-active {
   background-color: $dark !important;
+  color: $light !important;
+  border-bottom: 1px solid $light;
+  border-top: 1px solid $light;
 }
 
 // Margin
@@ -35,4 +47,14 @@
 //z-index
 .z-to-1000 {
   z-index: 1000;
+}
+
+// Opacity
+.opacity-0 {
+  opacity: 0;
+}
+
+// transitions
+.transition-all {
+  transition: all .4s ease-out;
 }

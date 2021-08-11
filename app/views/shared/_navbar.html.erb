@@ -1,69 +1,70 @@
-<div class="h-72 mb-3"></div>
-<nav class="position-fixed start-0 top-0 w-100 m-0 bg-light shadow-sm">
-  <div class="container">
-    <div class="w-100 h-72 d-flex align-items-center justify-content-between">
-      <a class="d-block navbar-brand" href="#">
-        <img src="" alt="" width="30" height="24">
-      </a>
-      <div class="h-100 d-none d-md-flex align-items-center">
-        <ul class="list-unstyled d-flex align-items-center h-100 mb-0">
-          <li class="mb-0 me-3 h-100 d-flex align-items-center border-bottom border-dark">
-            <%= link_to 'Home', root_path, class: 'h-100 d-flex align-items-center text-decoration-none text-dark navbar-item'  %>
-          </li>
-          <li class="mb-0 me-3 h-100 d-flex align-items-center">
-            <%= link_to 'About', root_path, class: 'h-100 d-flex align-items-center text-decoration-none text-dark navbar-item'  %>
-          </li>
-          <li class="mb-0 me-3 h-100 d-flex align-items-center">
-            <%= link_to 'Contact', root_path, class: 'h-100 d-flex align-items-center text-decoration-none text-dark navbar-item'  %>
-          </li>
-        </ul>
+<div class="h-72 mb-3" data-controller="sidebar">
+  <nav class="position-fixed start-0 top-0 w-100 m-0 bg-light shadow-sm">
+    <div class="container">
+      <div class="w-100 h-72 d-flex align-items-center justify-content-between">
+        <a class="d-block navbar-brand" href="#">
+          <img src="" alt="" width="30" height="24">
+        </a>
+        <div class="h-100 d-none d-md-flex align-items-center">
+          <ul class="list-unstyled d-flex align-items-center h-100 mb-0">
+            <li class="mb-0 me-3 h-100 d-flex align-items-center">
+              <%= link_to 'Home', root_path, 'data-name': 'Home', class: 'h-100 d-flex align-items-center text-decoration-none text-dark navbar-item' %>
+            </li>
+            <li class="mb-0 me-3 h-100 d-flex align-items-center">
+              <%= link_to 'About', root_path, 'data-name': 'About', class: 'h-100 d-flex align-items-center text-decoration-none text-dark navbar-item' %>
+            </li>
+            <li class="mb-0 me-3 h-100 d-flex align-items-center">
+              <%= link_to 'Contact', root_path, 'data-name': 'Contact', class: 'h-100 d-flex align-items-center text-decoration-none text-dark navbar-item' %>
+            </li>
+          </ul>
 
-        <div class="ms-5">
-          <% if current_user %>
-            <%= link_to current_user&.email, root_path, class: 'btn btn-outline-dark rounded-pill px-3'  %>
-            <%= link_to 'Logout', root_path, class: 'btn btn-dark rounded-pill px-3 ms-2'  %>
-          <% else %>
-            <%= link_to 'Login', root_path, class: 'btn btn-dark rounded-pill px-3'  %>
-            <%= link_to 'Sign up', root_path, class: 'btn btn-dark rounded-pill px-3 ms-2'  %>
-          <% end %>
+          <div class="ms-5">
+            <% if current_user %>
+              <%= link_to current_user&.email, root_path, class: 'btn btn-outline-dark rounded-pill px-3' %>
+              <%= link_to 'Logout', root_path, class: 'btn btn-dark rounded-pill px-3 ms-2' %>
+            <% else %>
+              <%= link_to 'Login', root_path, class: 'btn btn-dark rounded-pill px-3' %>
+              <%= link_to 'Sign up', root_path, class: 'btn btn-dark rounded-pill px-3 ms-2' %>
+            <% end %>
+          </div>
         </div>
+        <button class="d-md-none btn border rounded-3 px-3 fs-5" data-action="sidebar#openSidebar">
+          <i class="fas fa-bars"></i>
+        </button>
       </div>
-      <button class="d-md-none btn border rounded-3 px-3 fs-5">
-        <i class="fas fa-bars"></i>
-      </button>
+    </div>
+  </nav>
+  <div class="d-none position-fixed start-0 top-0 w-100 h-100 z-to-1000" data-sidebar-target="sidebarMain">
+    <div class="position-absolute top-0 start-0 h-100 w-100" data-action="click->sidebar#closeSidebar" style="background-color: rgba(0,0,0, .35);"></div>
+    <div class="position-absolute top-0 start-0 bg-light h-100 w-0" data-sidebar-target="itemsListContainer">
+      <div class="h-72 d-flex align-items-center justify-content-between border-bottom border-dark px-3" data-sidebar-target="itemsList">
+        <a class="d-block navbar-brand" href="#">
+          <img src="" alt="" width="30" height="24">
+        </a>
+        <button class="btn border-0 rounded-3 px-3 fs-5 fw-light" data-action="sidebar#closeSidebar">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <ul class="list-unstyled">
+        <li class="mb-0 h-72 d-flex align-items-center border-bottom border-dark">
+          <%= link_to 'Home', root_path, 'data-name': 'Home', class: 'h-100 w-100 d-flex align-items-center text-decoration-none text-dark sidebar-item px-3' %>
+        </li>
+        <li class="mb-0 h-72 d-flex align-items-center border-bottom border-dark">
+          <%= link_to 'About', root_path, 'data-name': 'About', class: 'h-100 w-100 d-flex align-items-center text-decoration-none text-dark sidebar-item px-3' %>
+        </li>
+        <li class="mb-0 h-72 d-flex align-items-center border-bottom border-dark">
+          <%= link_to 'Contact', root_path, 'data-name': 'Contact', class: 'h-100 w-100 d-flex align-items-center text-decoration-none text-dark sidebar-item px-3' %>
+        </li>
+      </ul>
+      <div class="w-100 mt-5 px-3 d-flex flex-column">
+        <% if current_user %>
+          <%= link_to current_user&.email, root_path, class: 'btn btn-outline-dark rounded-pill py-2 px-3 mb-3' %>
+          <%= link_to 'Logout', root_path, class: 'btn btn-dark rounded-pill py-2 px-3 mb-3' %>
+        <% else %>
+          <%= link_to 'Login', root_path, class: 'btn btn-dark rounded-pill py-2 px-3 mb-3' %>
+          <%= link_to 'Sign up', root_path, class: 'btn btn-dark rounded-pill py-2 px-3 ms-2 mb-3' %>
+        <% end %>
+      </div>
     </div>
   </div>
-</nav>
-<div class="position-fixed start-0 top-0 w-100 h-100 z-to-1000">
-  <div class="bg-light h-100" style="width: 280px;">
-    <div class="h-72 d-flex align-items-center justify-content-between border-bottom border-dark px-3">
-      <a class="d-block navbar-brand" href="#">
-        <img src="" alt="" width="30" height="24">
-      </a>
-      <button class="btn border-0 rounded-3 px-3 fs-5 fw-light">
-        <i class="fas fa-times"></i>
-      </button>
-    </div>
-    <ul class="list-unstyled">
-      <li class="mb-0 h-72 d-flex align-items-center border-bottom border-dark">
-        <%= link_to 'Home', root_path, class: 'h-100 w-100 d-flex align-items-center text-decoration-none text-dark sidebar-item px-3'  %>
-      </li>
-      <li class="mb-0 h-72 d-flex align-items-center border-bottom border-dark">
-        <%= link_to 'About', root_path, class: 'h-100 w-100 d-flex align-items-center text-decoration-none text-dark sidebar-item px-3'  %>
-      </li>
-      <li class="mb-0 h-72 d-flex align-items-center border-bottom border-dark">
-        <%= link_to 'Contact', root_path, class: 'h-100 w-100 d-flex align-items-center text-decoration-none text-dark sidebar-item px-3'  %>
-      </li>
-    </ul>
-    <div class="w-100 mt-5 px-3 d-flex flex-column">
-      <% if current_user %>
-        <%= link_to current_user&.email, root_path, class: 'btn btn-outline-dark rounded-pill py-2 px-3 mb-3'  %>
-        <%= link_to 'Logout', root_path, class: 'btn btn-dark rounded-pill py-2 px-3 mb-3'  %>
-      <% else %>
-        <%= link_to 'Login', root_path, class: 'btn btn-dark rounded-pill py-2 px-3 mb-3'  %>
-        <%= link_to 'Sign up', root_path, class: 'btn btn-dark rounded-pill py-2 px-3 ms-2 mb-3'  %>
-      <% end %>
-    </div>
-  </div>
-  <div class="position-absolute top-0 h-100 w-100" style="left: 280px; background-color: rgba(0,0,0, .35);"></div>
 </div>

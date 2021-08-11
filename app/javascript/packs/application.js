@@ -21,3 +21,6 @@ import "../stylesheets/application"
 
 // Fontawesome
 import "@fortawesome/fontawesome-free/js/all";
+
+// Stimulus controllers
+import "controllers";
