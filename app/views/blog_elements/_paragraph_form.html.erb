@@ -1,9 +1,9 @@
-<%= form_with(model: [blog_element]) do |form| %>
+<%= form_with(model: [blog_element], class: 'border-bottom py-3') do |form| %>
   <% if blog_element.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(blog_element.errors.count, "error") %> prohibited this blog_element from being saved:</h2>
+      <h2 class="fs-5 text-danger"><%= pluralize(blog_element.errors.count, "error") %> prohibited this blog_element from being saved:</h2>
 
-      <ul>
+      <ul class="text-danger" style="font-size: 14px">
         <% blog_element.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
@@ -14,12 +14,19 @@
   <%= form.hidden_field :post_id, value: post.id %>
   <%= form.hidden_field :element_type, value: 'paragraph' %>
 
-  <div class="field">
-    <%= form.label :content %>
+  <div class="my-4">
     <%= form.rich_text_area :content %>
   </div>
 
-  <div class="actions">
-    <%= form.submit 'Add paragraph' %>
+  <div class="my-3">
+    <%= button_tag( :class => "btn btn-dark rounded-0 d-flex align-items-center ms-auto") do %>
+    <% if context == 'new' %>
+        <i class="fas fa-plus"></i>
+        <span class="d-inline-block ms-2">Add new paragraph</span>
+    <% else %>
+        <i class="fas fa-save"></i>
+        <span class="d-inline-block ms-2">Update</span>
+    <% end %>
+    <% end %>
   </div>
 <% end %>

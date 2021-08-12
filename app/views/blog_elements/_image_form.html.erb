@@ -1,9 +1,9 @@
 <%= form_with(model: [blog_element]) do |form| %>
   <% if blog_element.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(blog_element.errors.count, "error") %> prohibited this blog_element from being saved:</h2>
+      <h2 class="fs-5 text-danger"><%= pluralize(blog_element.errors.count, "error") %> prohibited this blog_element from being saved:</h2>
 
-      <ul>
+      <ul class="text-danger" style="font-size: 14px;">
         <% blog_element.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
@@ -14,17 +14,17 @@
   <%= form.hidden_field :post_id, value: post.id %>
   <%= form.hidden_field :element_type, value: 'image' %>
 
-  <div class="field">
-    <%= form.label :blog_image %>
-    <%= form.file_field :blog_image, accept: 'image/*' %>
+  <div class="mb-3">
+    <%= form.label :blog_image, 'Blog photo', class: 'form-label' %>
+    <%= form.file_field :blog_image, accept: 'image/*', class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :blog_image_caption %>
-    <%= form.text_field :blog_image_caption %>
+  <div class="mb-3">
+    <%= form.label :blog_image_caption, 'Blog photo caption', class: 'form-label' %>
+    <%= form.text_field :blog_image_caption, class: 'form-control' %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="mb-3 text-end">
+    <%= form.submit 'Add new photo', class: 'btn btn-dark rounded-0' %>
   </div>
 <% end %>
