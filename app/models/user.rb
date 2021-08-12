@@ -10,4 +10,8 @@ class User < ApplicationRecord
          :lockable, :timeoutable, :trackable
 
   has_many :posts
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end

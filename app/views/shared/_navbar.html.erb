@@ -1,5 +1,5 @@
-<div class="h-72 mb-3" data-controller="sidebar">
-  <nav class="position-fixed start-0 top-0 w-100 m-0 bg-light shadow-sm">
+<div class="h-72" data-controller="sidebar">
+  <nav class="position-fixed start-0 top-0 w-100 m-0 bg-light shadow-sm z-to-1000">
     <div class="container">
       <div class="w-100 h-72 d-flex align-items-center justify-content-between">
         <a class="d-block navbar-brand" href="#">
@@ -35,7 +35,7 @@
     </div>
   </nav>
   <div class="d-none position-fixed start-0 top-0 w-100 h-100 z-to-1000" data-sidebar-target="sidebarMain">
-    <div class="position-absolute top-0 start-0 h-100 w-100" data-action="click->sidebar#closeSidebar" style="background-color: rgba(0,0,0, .35);"></div>
+    <div class="position-absolute top-0 start-0 h-100 w-100 bg-dark-trans-3" data-action="click->sidebar#closeSidebar"></div>
     <div class="position-absolute top-0 start-0 bg-light h-100 w-0" data-sidebar-target="itemsListContainer">
       <div class="h-72 d-flex align-items-center justify-content-between border-bottom border-dark px-3" data-sidebar-target="itemsList">
         <a class="d-block navbar-brand" href="#">
