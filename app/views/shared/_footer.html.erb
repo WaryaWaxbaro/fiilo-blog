@@ -1,0 +1,48 @@
+<footer class="bg-dark text-light w-100 m-0 pt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="d-flex justify-content-center justify-content-sm-start mb-5">
+          <a class="d-block navbar-brand" href="#">
+            <img src="" alt="" width="30" height="24">
+          </a>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="d-flex justify-content-sm-around flex-wrap">
+          <div class="min-w-200 mx-auto mx-sm-0">
+            <ul class="list-unstyled">
+              <li class="text-center-sm">
+                <%= link_to 'Home', root_path, class: 'text-decoration-none text-light ls-6' %>
+              </li>
+              <li class="text-center-sm">
+                <%= link_to 'Blog', root_path, class: 'text-decoration-none text-light ls-6' %>
+              </li>
+              <li class="text-center-sm">
+                <%= link_to 'About', root_path, class: 'text-decoration-none text-light ls-6' %>
+              </li>
+              <li class="text-center-sm">
+                <%= link_to 'Contact', root_path, class: 'text-decoration-none text-light ls-6' %>
+              </li>
+            </ul>
+          </div>
+          <div class="min-w-200 mb-4 mx-auto mx-sm-0">
+            <ul class="list-unstyled">
+              <li class="text-center-sm">
+                <%= link_to 'Terms', root_path, class: 'text-decoration-none text-light ls-6' %>
+              </li>
+              <li class="text-center-sm">
+                <%= link_to 'Privacy', root_path, class: 'text-decoration-none text-light ls-6' %>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="mt-5">
+          <p class="text-center ls-6">Copyright &copy; <%= Date.today.year %> - All Rights Reserved - Fiiloblog</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
