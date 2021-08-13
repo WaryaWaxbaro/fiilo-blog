@@ -16,9 +16,33 @@
     <%= form.text_field :title, class: 'form-control' %>
   </div>
 
-  <div class="mb-5">
+  <div class="mb-3">
     <%= form.label :intro, class: 'form-label' %>
     <%= form.text_area :intro, class: 'form-control', rows: '5' %>
+  </div>
+
+  <div class="form-check mb-3">
+    <%= form.check_box :publish, class: 'form-check-input' %>
+    <%= form.label :publish, class: 'form-check-label' %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :publish_at, class: 'form-label' %>
+    <%= form.datetime_local_field :publish_at, class: 'form-control' %>
+  </div>
+
+  <% if post.cover_image.attached? %>
+    <div class="mb-3">
+      <h3 class="fs-6 mb-3">Current cover photo</h3>
+      <div class="max-width-350 py-3">
+        <%= image_tag rails_blob_url(post.cover_image), alt: post.title, class: 'img-fluid rounded-3' %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="mb-5">
+    <%= form.label :cover_image, 'Blog cover photo', class: 'form-label' %>
+    <%= form.file_field :cover_image, accept: 'image/*', class: 'form-control' %>
   </div>
 
   <div class="d-grid">

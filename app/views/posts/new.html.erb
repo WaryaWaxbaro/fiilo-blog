@@ -7,12 +7,12 @@
       <h1 class="fs-2">Add new post</h1>
       <div class="mt-5">
         <%= form_with(model: @post) do |form| %>
-          <% if post.errors.any? %>
+          <% if @post.errors.any? %>
             <div id="error_explanation">
-              <h2 class="fs-5 text-danger"><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+              <h2 class="fs-5 text-danger"><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
 
               <ul class="text-dark" style="font-size: 14px;">
-                <% post.errors.each do |error| %>
+                <% @post.errors.each do |error| %>
                   <li><%= error.full_message %></li>
                 <% end %>
               </ul>

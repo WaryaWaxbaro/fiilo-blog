@@ -7,11 +7,12 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.text :roles, array: true, default: ["member"]
       t.string :phone
       t.boolean :accept_terms, default: false
+      t.boolean :is_active, default: true
 
       t.timestamps
     end
 
-    add_index :users, :username, unique: true
+    #add_index :users, :username, unique: true
   end
 end
 

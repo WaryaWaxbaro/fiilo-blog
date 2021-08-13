@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :set_post, only: %i[ edit update destroy ]
 
   # GET /posts or /posts.json
   def index
@@ -9,6 +9,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1 or /posts/1.json
   def show
+    @post = Post.find_by(slug: params[:id])
   end
 
   # GET /posts/new
@@ -25,10 +26,11 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user = current_user if current_user
+    @post.slug = "#{post_params[:title]}".parameterize
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: "Post was successfully created." }
+        format.html { redirect_to edit_post_path(@post), notice: "Post was successfully created." }
         format.json { render :show, status: :created, location: @post }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -41,7 +43,7 @@ class PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to @post, notice: "Post was successfully updated." }
+        format.html { redirect_to edit_post_path(@post), notice: "Post was successfully updated." }
         format.json { render :show, status: :ok, location: @post }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -67,6 +69,6 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:user_id, :title, :intro)
+      params.require(:post).permit(:user_id, :title, :intro, :publish, :publish_at, :cover_image)
     end
 end

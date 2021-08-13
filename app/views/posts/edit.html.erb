@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-12 my-4">
         <div class="text-end">
-          <%= link_to 'View Post', @post, class: 'btn btn-dark rounded-0 me-3' %>
+          <%= link_to 'View Post', post_path(@post.slug), class: 'btn btn-dark rounded-0 me-3' %>
           <%= link_to 'Back to posts', posts_path, class: 'btn btn-dark rounded-0' %>
         </div>
       </div>
@@ -33,6 +33,7 @@
                   <div class="w-100 py-5">
                     <div class="">
                       <%= image_tag element.blog_image, class: 'img-fluid rounded-3' %>
+                      <p class="mt-2"><%= element.blog_image_caption %></p>
                       <div class="text-end mt-3">
                         <%= link_to blog_element_path(element.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger rounded-0 text-light' do %>
                           <i class="fas fa-trash-alt"></i>
@@ -45,7 +46,7 @@
             <% end %>
           <% else %>
             <p class="d-flex align-items-center">
-              <i class="fas fa-exclamation-circle"></i>
+              <i class="fas fa-exclamation-circle text-danger"></i>
               <span class="d-inline-block ms-2">Post has no content</span>
             </p>
           <% end %>
