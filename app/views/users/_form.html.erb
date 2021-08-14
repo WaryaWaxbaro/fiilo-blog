@@ -1,9 +1,9 @@
 <%= form_with(model: user) do |form| %>
   <% if user.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <h2 class="text-danger" style="font-size: 14px"><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-      <ul>
+      <ul class="text-danger" style="font-size: 14px">
         <% user.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
@@ -11,22 +11,49 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :first_name %>
-    <%= form.text_field :first_name %>
+  <div class="mb-3">
+    <%= form.label :first_name, class: 'form-label' %>
+    <%= form.text_field :first_name, class: 'form-control rounded-0' %>
   </div>
 
-  <div class="field">
-    <%= form.label :last_name %>
-    <%= form.text_field :last_name %>
+  <div class="mb-3">
+    <%= form.label :last_name, class: 'form-label' %>
+    <%= form.text_field :last_name, class: 'form-control rounded-0' %>
   </div>
 
-  <div class="field">
-    <%= form.label :username %>
-    <%= form.text_field :username %>
+  <div class="mb-3">
+    <p class="fw-bold">Roles</p>
+    <%= form.collection_check_boxes(:roles, { 'Admin': 'admin', 'Author': 'author', 'Member': 'member' }, :last, :first) do |b| %>
+      <div class="form-check mb-3 ">
+        <%= b.check_box class: 'form-check-input mt-2' %>
+        <div class="d-flex align-items-center ms-3 pt-1">
+          <%= b.label class: 'form-check-label' %>
+        </div>
+      </div>
+    <% end %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="mb-3">
+    <%= form.label :email, class: 'form-label' %>
+    <%= form.text_field :email, class: 'form-control rounded-0', disabled: true %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :phone, class: 'form-label' %>
+    <%= form.text_field :phone, class: 'form-control rounded-0' %>
+  </div>
+
+  <div class="form-check mb-3">
+    <%= form.check_box :is_active, class: 'form-check-input' %>
+    <%= form.label :is_active, class: 'form-check-label' %>
+  </div>
+
+  <div class="form-check mb-3">
+    <%= form.check_box :accept_terms, class: 'form-check-input' %>
+    <%= form.label :accept_terms, class: 'form-check-label' %>
+  </div>
+
+  <div class="d-grid my-3">
+    <%= form.submit class: 'btn btn-dark rounded-0 py-3' %>
   </div>
 <% end %>

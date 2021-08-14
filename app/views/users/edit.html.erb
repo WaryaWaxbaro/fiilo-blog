@@ -1,6 +1,25 @@
-<h1>Editing User</h1>
+<main class="min-85vh">
+  <div class="container">
+    <div class="max-width-650 mx-auto shadow p-3 mt-4">
+      <h2 class="fs-2 my-3 text-center">Editing User</h2>
+      <div class="p-sm-2">
+        <div class="d-flex ms-auto my-3">
+          <%= link_to "javascript:history.back()", class: 'btn btn-light border border-dark px-3 rounded-0 shadow ms-auto d-flex align-items-center justify-content-center' do %>
+        <span class="d-block text-dark">
+          <i class="fas fa-chevron-left"></i>
+        </span>
+          <% end %>
+          <%= link_to user_path(@user), class: 'btn btn-light border border-dark rounded-0 shadow ms-3 d-flex align-items-center justify-content-center' do %>
+          <span class="d-block text-dark">
+            <i class="fas fa-eye"></i>
+          </span>
+          <% end %>
+        </div>
+      </div>
+      <div>
+        <%= render 'form', user: @user %>
+      </div>
+    </div>
+  </div>
 
-<%= render 'form', user: @user %>
-
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+</main>

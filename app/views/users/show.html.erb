@@ -1,19 +1,91 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>First name:</strong>
-  <%= @user.first_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @user.last_name %>
-</p>
-
-<p>
-  <strong>Username:</strong>
-  <%= @user.username %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<main class="min-85vh pt-5">
+  <div class="container">
+    <div class="p-sm-2 border-bottom my-2">
+      <h1 class="fs-3 fw-normal ls-6">User info</h1>
+    </div>
+    <div class="p-sm-2">
+      <div class="d-flex ms-auto my-3">
+        <%= link_to "javascript:history.back()", class: 'btn btn-light border border-dark px-3 rounded-0 shadow ms-auto d-flex align-items-center justify-content-center' do %>
+        <span class="d-block text-dark">
+          <i class="fas fa-chevron-left"></i>
+        </span>
+        <% end %>
+        <%= link_to edit_user_path(@user), class: 'btn btn-light border border-dark rounded-0 shadow ms-3 d-flex align-items-center justify-content-center' do %>
+          <span class="d-block text-dark">
+            <i class="fas fa-user-edit"></i>
+          </span>
+        <% end %>
+      </div>
+    </div>
+    <div class="table-responsive py-4">
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <td>First name</td>
+            <td><%= @user.first_name %></td>
+          </tr>
+          <tr>
+            <td>Last name</td>
+            <td><%= @user.last_name %></td>
+          </tr>
+          <tr>
+            <td>Phone</td>
+            <td><%= @user.phone %></td>
+          </tr>
+          <tr>
+            <td>Email</td>
+            <td><%= @user.email %></td>
+          </tr>
+          <tr>
+            <td>Roles</td>
+            <td><%= @user.roles.join(", ") %></td>
+          </tr>
+          <tr>
+            <td>Is Active</td>
+            <td>
+              <% if @user.is_active %>
+                <span class="text-success fs-5"><i class="far fa-check-circle"></i></span>
+              <% else %>
+                <span class="text-danger fs-5"><i class="far fa-times-circle"></i></span>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td>Registered date</td>
+            <td><%= @user.created_at.strftime("%d.%m.%Y %H:%M") %></td>
+          </tr>
+          <tr>
+            <td>Accept terms</td>
+            <td>
+              <% if @user.accept_terms %>
+                <span class="text-success fs-5"><i class="far fa-check-circle"></i></span>
+              <% else %>
+                <span class="text-danger fs-5"><i class="far fa-times-circle"></i></span>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td>Sign in count</td>
+            <td><%= @user.sign_in_count %></td>
+          </tr>
+          <tr>
+            <td>Current sign in at</td>
+            <td><%= @user&.current_sign_in_at&.strftime("%d.%m.%Y %H:%M") %></td>
+          </tr>
+          <tr>
+            <td>Last sign in at</td>
+            <td><%= @user&.last_sign_in_at.strftime("%d.%m.%Y %H:%M") %></td>
+          </tr>
+          <tr>
+            <td>Current sign in ip</td>
+            <td><%= @user.current_sign_in_ip %></td>
+          </tr>
+          <tr>
+            <td>Last sign in ip</td>
+            <td><%= @user.last_sign_in_ip %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
