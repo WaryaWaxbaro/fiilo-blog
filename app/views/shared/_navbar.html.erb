@@ -11,11 +11,21 @@
               <%= link_to 'Home', root_path, 'data-name': 'Home', class: 'h-100 d-flex align-items-center text-decoration-none text-dark navbar-item ls-6' %>
             </li>
             <li class="mb-0 me-3 h-100 d-flex align-items-center">
-              <%= link_to 'About', root_path, 'data-name': 'About', class: 'h-100 d-flex align-items-center text-decoration-none text-dark navbar-item ls-6' %>
+              <%= link_to 'Blog', posts_path, 'data-name': 'Blog', class: 'h-100 d-flex align-items-center text-decoration-none text-dark navbar-item ls-6' %>
             </li>
             <li class="mb-0 me-3 h-100 d-flex align-items-center">
               <%= link_to 'Contact', root_path, 'data-name': 'Contact', class: 'h-100 d-flex align-items-center text-decoration-none text-dark navbar-item ls-6' %>
             </li>
+            <% if current_user&.admin? || current_user&.author? %>
+              <li class="mb-0 me-3 h-100 d-flex align-items-center">
+                <%= link_to 'Manage blog', posts_path, 'data-name': 'blog', class: 'h-100 d-flex align-items-center text-decoration-none text-dark navbar-item ls-6' %>
+              </li>
+            <% end %>
+            <% if current_user&.admin? %>
+              <li class="mb-0 me-3 h-100 d-flex align-items-center">
+                <%= link_to 'Manage users', users_path, 'data-name': 'users', class: 'h-100 d-flex align-items-center text-decoration-none text-dark navbar-item ls-6' %>
+              </li>
+            <% end %>
           </ul>
 
           <div class="ms-5">
@@ -50,11 +60,21 @@
           <%= link_to 'Home', root_path, 'data-name': 'Home', class: 'h-100 w-100 d-flex align-items-center text-decoration-none text-dark sidebar-item px-3 ls-6' %>
         </li>
         <li class="mb-0 h-72 d-flex align-items-center border-bottom border-dark">
-          <%= link_to 'About', root_path, 'data-name': 'About', class: 'h-100 w-100 d-flex align-items-center text-decoration-none text-dark sidebar-item px-3 ls-6' %>
+          <%= link_to 'Blog', posts_path, 'data-name': 'Blog', class: 'h-100 w-100 d-flex align-items-center text-decoration-none text-dark sidebar-item px-3 ls-6' %>
         </li>
         <li class="mb-0 h-72 d-flex align-items-center border-bottom border-dark">
           <%= link_to 'Contact', root_path, 'data-name': 'Contact', class: 'h-100 w-100 d-flex align-items-center text-decoration-none text-dark sidebar-item px-3 ls-6' %>
         </li>
+        <% if current_user&.admin? || current_user&.author? %>
+          <li class="mb-0 h-72 d-flex align-items-center border-bottom border-dark">
+            <%= link_to 'Manage blog', posts_path, 'data-name': 'posts', class: 'h-100 w-100 d-flex align-items-center text-decoration-none text-dark sidebar-item px-3 ls-6' %>
+          </li>
+        <% end %>
+        <% if current_user&.admin? %>
+          <li class="mb-0 h-72 d-flex align-items-center border-bottom border-dark">
+            <%= link_to 'Manage users', users_path, 'data-name': 'users', class: 'h-100 w-100 d-flex align-items-center text-decoration-none text-dark sidebar-item px-3 ls-6' %>
+          </li>
+        <% end %>
       </ul>
       <div class="w-100 mt-5 px-3 d-flex flex-column">
         <% if current_user %>

@@ -1,19 +1,41 @@
-<p id="notice"><%= notice %></p>
+<main class="min-85vh">
+  <div class="position-relative w-100 py-5 bg-dark-trans-4">
+    <div class="container">
+      <div class="max-width-550 text-light py-5">
+        <h1 class="fs-1 mb-3"><%= @post.title %></h1>
+        <p style="font-size: 14px;"> <%= @post.intro %></p>
+      </div>
+    </div>
+    <% if @post.cover_image.attached? %>
+      <%= image_tag @post.cover_image, class: 'position-absolute start-0 top-0 z-1 cover-img', alt: @post.title %>
+    <% else %>
+      <%= image_tag get_random_img, class: 'position-absolute start-0 top-0 z-1 cover-img', alt: @post.title %>
+    <% end %>
+  </div>
+  <div class="container">
+    <div class="max-width-680 mx-auto pt-5">
+      <p class="mb-3 d-flex">
+        <span class="d-block me-3"><i class="far fa-calendar"></i></span>
+        <span class="d-block"><%= @post&.created_at&.strftime("%d.%m.%Y %H:%M") %></span>
+      </p>
+      <p class="mb-3 d-flex">
+        <span class="d-block me-3"><i class="far fa-user"></i></span>
+        <span class="d-block"><%= @post.user.full_name %></span>
+      </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @post.user_id %>
-</p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
-
-<p>
-  <strong>Intro:</strong>
-  <%= @post.intro %>
-</p>
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+      <div class="py-5">
+        <% @post.blog_elements.each do |element| %>
+          <% if element.element_type == 'paragraph' %>
+            <%= element.content %>
+          <% end %>
+          <% if element.element_type == 'image' && element.blog_image.attached? %>
+            <div class="max-width-550 mx-auto my-5">
+              <%= image_tag element.blog_image, class: 'img-fluid rounded-3', alt: element.blog_image_caption %>
+              <p class="mt-3" style="font-size: 14px;"><%= element.blog_image_caption %></p>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</main>

@@ -6,7 +6,6 @@ export default class extends Controller {
     static targets = ["sidebarMain", "itemsListContainer", "itemsList"]
 
     connect() {
-        console.log(this)
         this.updateSideBarActiveItem()
     }
 
@@ -40,10 +39,10 @@ export default class extends Controller {
 
     activeItemMapper(pathname, collection, class_name){
         collection.forEach(item => {
-            let name = item.dataset.name;
+            let name = item.dataset.name.toLowerCase();
             if(pathname.length > 0 && pathname.indexOf(name) >= 0){
                 item.classList.add(class_name)
-            }if(pathname.length === 0 && name === 'Home'){
+            }else if(pathname.length === 0 && name === 'home'){
                 item.classList.add(class_name)
             }else {
                 if(item.classList.contains(class_name)){

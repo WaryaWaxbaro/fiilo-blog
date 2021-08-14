@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :blog_elements
-  resources :posts
+  resources :posts, :path => 'blog'
   devise_for :users, :path => '', :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" }
   resources :users
   root 'posts#index'

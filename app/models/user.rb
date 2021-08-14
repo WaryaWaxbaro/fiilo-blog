@@ -21,4 +21,8 @@ class User < ApplicationRecord
   def admin?
     roles.include? 'admin'
   end
+
+  def author?
+    roles.include? 'author'
+  end
 end
