@@ -5,3 +5,16 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+1.upto(119).each do |i|
+  ran = rand(4)
+  role = ["admin", "author", "member"]
+  User.create(first_name: Faker::Name.first_name,
+              last_name: Faker::Name.last_name,
+              email: "user#{i}@fiilo.com",
+              roles: [role[ran]],
+              password: 'secret',
+              password_confirmation: 'secret',
+              phone: Faker::PhoneNumber.phone_number_with_country_code,
+              accept_terms: true)
+end

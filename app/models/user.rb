@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  include PgSearch::Model
+  pg_search_scope :search_for, against: %i(first_name last_name email phone)
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,

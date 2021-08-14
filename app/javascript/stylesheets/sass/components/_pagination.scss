@@ -1,0 +1,157 @@
+#admin-pagination .nav-pagination,
+.nav-pagination {
+  display: flex;
+  justify-content: center;
+
+  & span {
+    width: 25px;
+    height: 25px;
+    //background-color: #000;
+    border-radius: 50%;
+    font-size: 12px;
+    &:not(:last-child) {
+      margin-right: 6px;
+    }
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & a {
+      display: inline-block;
+      text-decoration: none;
+      color: #222;
+    }
+  }
+}
+
+.nav-pagination .current {
+  background-color: #000;
+  color: #fff;
+}
+
+.nav-pagination .disabled .fa-chevron-left {
+  color: #a7a7a7;
+}
+
+.nav-pagination .disabled .fa-chevron-right {
+  color: #a7a7a7;
+}
+
+/*
+.nav-pagination .prev {
+  visibility: hidden;
+  position: relative;
+
+  &::after {
+    font-family: "Font Awesome 5 Free";
+    content: "\f053";
+    font-weight: 400;
+    position: relative;
+    width: 25px;
+    height: 25px;
+    padding: 5px 25px 5px 5px;
+    margin-right: 10px;
+    visibility: visible;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.nav-pagination .next {
+  //visibility: hidden;
+  position: relative;
+
+  &::after {
+    content: ">";
+    font-weight: 400;
+    position: relative;
+    width: 25px;
+    height: 25px;
+    //padding: 5px 5px 5px 25px;
+    //margin-right: 25px;
+    visibility: visible;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}*/
+
+// Next link
+.next-link-pagination {
+  display: flex;
+  justify-content: center;
+
+  & a {
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+}
+
+#admin-pagination .nav-pagination {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+
+  & span {
+    width: 25px;
+    height: 25px;
+    //background-color: #000;
+    border-radius: 50%;
+    font-size: 12px;
+    &:not(:last-child) {
+      margin-right: 6px;
+    }
+
+    &:first-child {
+      position: relative;
+
+      & a {
+        font-size: 18px;
+        &::after {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          content: "<";
+        }
+      }
+    }
+
+    &:last-child {
+      position: relative;
+
+      & a {
+        font-size: 18px;
+        //&::after {
+        //  position: absolute;
+        //  left: 50%;
+        //  top: 50%;
+        //  transform: translate(-50%, -50%);
+        //  content: "\003E";
+        //}
+      }
+    }
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & a {
+      display: inline-block;
+      text-decoration: none;
+      color: #222;
+    }
+  }
+}
+
+#admin-pagination .pagination {
+  background-color: transparent;
+  border: none;
+}

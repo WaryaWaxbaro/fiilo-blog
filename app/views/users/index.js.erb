@@ -1,0 +1,3 @@
+var users_table_container = document.getElementById("users-table-container")
+users_table_container.dataset.currentPage = "<%= escape_javascript(@current_page) %>"
+users_table_container.innerHTML = "<%= escape_javascript(render partial: 'users/user', locals: { users: @users, pagy: @pagy} ) %>";

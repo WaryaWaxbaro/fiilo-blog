@@ -1,56 +1,36 @@
-<main class="min-85vh pt-5">
+<main class="min-85vh pt-5"  data-controller="users" data-users-target="mainContainer" data-per-page="10" data-query="" data-step="initial">
   <div class="container">
-    <h1 class="fs-1 ls-6">Users</h1>
-    <div class="table-responsive pt-4">
-      <table class="table table-bordered">
-        <thead class="table-dark">
-        <tr>
-          <th>First name</th>
-          <th>Last name</th>
-          <th>Phone</th>
-          <th>Email</th>
-          <th>Is Active</th>
-          <th>Roles</th>
-          <th>Register date</th>
-          <th colspan="3"></th>
-        </tr>
-        </thead>
-
-        <tbody>
-        <% @users.each do |user| %>
-          <tr>
-            <td><%= user.first_name %></td>
-            <td><%= user.last_name %></td>
-            <td><%= user.phone %></td>
-            <td><%= user.email %></td>
-            <td class="text-center">
-              <% if user.is_active %>
-              <span class="text-success fs-5"><i class="far fa-check-circle"></i></span>
-              <% else %>
-                <span class="text-danger fs-5"><i class="far fa-times-circle"></i></span>
-              <% end %>
-            </td>
-            <td><%= user&.roles.join(", ") %></td>
-            <td><%= user.created_at.strftime("%d.%m.%Y %H:%M") %></td>
-            <td>
-              <%= link_to user do %>
-                <span class="fs-5"><i class="fas fa-eye"></i></span>
-              <% end %>
-            </td>
-            <td>
-              <%= link_to edit_user_path(user) do %>
-                <span class="text-warning fs-5"><i class="fas fa-user-edit"></i></span>
-              <% end %>
-            </td>
-            <td>
-              <%= link_to user, method: :delete, data: { confirm: 'Are you sure?' } do %>
-                <span class="text-danger fs-5"><i class="far fa-trash-alt"></i></span>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-        </tbody>
-      </table>
+    <div class="p-sm-2 border-bottom my-2">
+      <h1 class="fs-3 fw-normal ls-6">Users</h1>
+    </div>
+    <div class="p-sm-2">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="mb-3">
+            <label for="per_page" class="form-label fs-14 ls-1">Records per page</label>
+            <select class="form-select outline-none no-shadow-btn shadow ls-1" data-users-target="perPage" data-action="users#submitSeachQuery" aria-label="Default select example">
+              <option value="10">10</option>
+              <option value="25">25</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="mb-3">
+            <label for="search" class="form-label fs-14 ls-1">Search</label>
+            <div class="input-group mb-3">
+            <span class="input-group-text bg-gold" id="basic-search">
+              <i class="fas fa-search"></i>
+            </span>
+              <input type="text" data-users-target="query" data-action="users#submitSeachQuery" class="form-control outline-none no-shadow-btn shadow ls-1" placeholder="Name, email ...." aria-label="Search" aria-describedby="basic-search">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-100 shadow rounded-3" data-users-target="usersTableContainer" id="users-table-container">
+      <%= render 'users/user', users: @users, pagy: @pagy  %>
     </div>
   </div>
 </main>

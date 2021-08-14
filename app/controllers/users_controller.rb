@@ -3,7 +3,19 @@ class UsersController < ApplicationController
 
   # GET /users or /users.json
   def index
-    @users = User.all
+    page = params[:page] || 1
+    per_page = params[:per_page] || 10
+    query = params[:query]
+
+    users_all = User.all
+    users_all = users_all.search_for(query) unless query.blank?
+    @current_page = page
+    @pagy, @users = pagy(users_all, link_extra: 'data-remote="true"', page: page, items: per_page.to_i)
+
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 
   # GET /users/1 or /users/1.json
