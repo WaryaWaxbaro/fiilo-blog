@@ -9,4 +9,7 @@ class Post < ApplicationRecord
   has_many :blog_elements, dependent: :destroy
 
   has_one_attached :cover_image
+
+  scope :published, -> { where(publish: true) }
+  scope :published_at, -> { where('publish_at < ? ', DateTime.now) }
 end

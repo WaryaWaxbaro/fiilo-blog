@@ -1,0 +1,3 @@
+var blog_table_container = document.getElementById("blog-table-container")
+blog_table_container.dataset.currentPage = "<%= escape_javascript(@current_page) %>"
+blog_table_container.innerHTML = "<%= escape_javascript(render partial: 'authors/posts/post', locals: { posts: @posts, pagy: @pagy} ) %>";

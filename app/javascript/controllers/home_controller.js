@@ -31,11 +31,11 @@ export default class extends Controller {
         let per_page = this.mainContainerTarget.dataset.perPage;
         let query = this.mainContainerTarget.dataset.query;
         let currentPage = null;
-        if(this.staffTableContainerTarget){
-            currentPage = this.staffTableContainerTarget.dataset.currentPage;
+        if(this.homePostsContainerTarget){
+            currentPage = this.homePostsContainerTarget.dataset.currentPage;
         }
-        this.queryTarget.value = query ? query : ""
-        let page = currentPage ? currentPage : 1
+        this.queryTarget.value = query
+        let page = currentPage
 
         let queryObj = {per_page, query, page}
         let queryString = objectToQueryString(queryObj)

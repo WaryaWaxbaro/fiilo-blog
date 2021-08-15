@@ -1,0 +1,66 @@
+<div class="min-85vh">
+  <div class="container-fluid">
+    <h1 class="fs-2 ls-6 my-3 text-center">Editing Post</h1>
+    <div class="row">
+      <div class="col-12 my-4">
+        <div class="text-end">
+          <%= link_to 'View Post', authors_post_path(@post.slug), class: 'btn btn-dark rounded-0 me-3' %>
+          <%= link_to 'Back to posts', authors_posts_path, class: 'btn btn-dark rounded-0' %>
+        </div>
+      </div>
+      <div class="col-md-4 mb-3 border rounded-3">
+        <div class="pt-3">
+          <%= render 'form', post: @post %>
+        </div>
+      </div>
+      <div class="col-md-8 mb-3">
+        <div>
+          <h2 class="fs-3 ls-6">Post content</h2>
+          <p class="d-flex align-items-center">
+            <i class="fas fa-info-circle"></i>
+            <span class="d-inline-block ms-2">Adding content to the blog, select to add paragraph or an image content </span>
+          </p>
+        </div>
+        <div class="my-3 border-bottom">
+          <% if @post.blog_elements.exists? %>
+            <% @post.blog_elements.each do |element| %>
+              <% if element.paragraph? %>
+                <%= render 'blog_elements/paragraph_form', blog_element: element, post: @post, context: 'edit' %>
+              <% end %>
+
+              <% if element.image? %>
+                <% if element.blog_image.attached? %>
+                  <div class="w-100 py-5">
+                    <div class="">
+                      <%= image_tag element.blog_image, class: 'img-fluid rounded-3' %>
+                      <p class="mt-2"><%= element.blog_image_caption %></p>
+                      <div class="text-end mt-3">
+                        <%= link_to blog_element_path(element.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger rounded-0 text-light' do %>
+                          <i class="fas fa-trash-alt"></i>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% else %>
+            <p class="d-flex align-items-center">
+              <i class="fas fa-exclamation-circle text-danger"></i>
+              <span class="d-inline-block ms-2">Post has no content</span>
+            </p>
+          <% end %>
+        </div>
+        <div class="border rounded-3 p-2">
+          <h2 class="fs-3 ls-6 my-3 pb-3 border-bottom border-dark">Add contents</h2>
+          <div class="py-2">
+            <%= render 'blog_elements/paragraph_form', blog_element: @blog_element, post: @post, context: 'new' %>
+          </div>
+          <div class="my-3">
+            <%= render 'blog_elements/image_form', blog_element: @blog_element, post: @post %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

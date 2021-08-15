@@ -35,8 +35,8 @@ export default class extends Controller {
         let per_page = this.mainContainerTarget.dataset.perPage;
         let query = this.mainContainerTarget.dataset.query;
         let currentPage = null;
-        if(this.staffTableContainerTarget){
-            currentPage = this.staffTableContainerTarget.dataset.currentPage;
+        if(this.blogTableContainerTarget){
+            currentPage = this.blogTableContainerTarget.dataset.currentPage;
         }
         this.queryTarget.value = query ? query : ""
         this.perPageTarget.value = per_page ? per_page : 10
@@ -51,7 +51,7 @@ export default class extends Controller {
     dataRequest(query){
         Rails.ajax({
             type: 'get',
-            url: `/blog?${query}`,
+            url: `/authors/blog?${query}`,
         })
     }
 }

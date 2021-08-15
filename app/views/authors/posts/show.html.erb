@@ -19,7 +19,7 @@
             <%= link_to 'Edit post', edit_authors_post_path(@post), class: 'btn btn-dark rounde-0' %>
         <% end %>
         <% if current_user&.author? && @post.user == current_user %>
-          <%= link_to 'Edit post', edit_post_path(@post), class: 'btn btn-dark rounde-0' %>
+          <%= link_to 'Edit post', edit_authors_post_path(@post), class: 'btn btn-dark rounde-0' %>
         <% end %>
       </div>
       <p class="mb-3 d-flex">

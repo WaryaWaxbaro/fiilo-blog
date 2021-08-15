@@ -4,7 +4,7 @@ class HomeController < ApplicationController
     per_page = params[:per_page] || 15
     query = params[:query]
 
-    all_posts = Post.all
+    all_posts = Post.published.published_at
     all_posts = all_posts.search_for(query) unless query.blank?
     @current_page = page
     @pagy, @posts = pagy(all_posts, link_extra: 'data-remote="true"', page: page, items: per_page.to_i)
