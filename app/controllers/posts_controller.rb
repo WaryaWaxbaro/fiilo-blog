@@ -4,7 +4,19 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.all
+    page = params[:page] || 1
+    per_page = params[:per_page] || 10
+    query = params[:query]
+
+    all_posts = current_user.posts
+    all_posts = all_posts.search_for(query) unless query.blank?
+    @current_page = page
+    @pagy, @posts = pagy(all_posts, link_extra: 'data-remote="true"', page: page, items: per_page.to_i)
+
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 
   # GET /posts/1 or /posts/1.json

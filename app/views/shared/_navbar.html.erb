@@ -8,10 +8,7 @@
         <div class="h-100 d-none d-md-flex align-items-center">
           <ul class="list-unstyled d-flex align-items-center h-100 mb-0">
             <li class="mb-0 me-3 h-100 d-flex align-items-center">
-              <%= link_to 'Home', root_path, 'data-name': 'Home', class: 'h-100 d-flex align-items-center text-decoration-none text-dark navbar-item ls-6' %>
-            </li>
-            <li class="mb-0 me-3 h-100 d-flex align-items-center">
-              <%= link_to 'Blog', posts_path, 'data-name': 'Blog', class: 'h-100 d-flex align-items-center text-decoration-none text-dark navbar-item ls-6' %>
+              <%= link_to 'Blog', root_path, 'data-name': 'Home', class: 'h-100 d-flex align-items-center text-decoration-none text-dark navbar-item ls-6' %>
             </li>
             <li class="mb-0 me-3 h-100 d-flex align-items-center">
               <%= link_to 'Contact', root_path, 'data-name': 'Contact', class: 'h-100 d-flex align-items-center text-decoration-none text-dark navbar-item ls-6' %>
@@ -30,7 +27,7 @@
 
           <div class="ms-5">
             <% if current_user %>
-              <%= link_to current_user&.email, root_path, class: 'btn btn-outline-dark rounded-pill px-3 ls-6' %>
+              <%= link_to current_user&.email, edit_user_registration_path, class: 'btn btn-outline-dark rounded-pill px-3 ls-6' %>
               <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-dark rounded-pill px-3 ms-2 ls-6' %>
             <% else %>
               <%= link_to 'Login', new_user_session_path, class: 'btn btn-dark rounded-pill px-3 ls-6' %>
@@ -57,10 +54,7 @@
       </div>
       <ul class="list-unstyled">
         <li class="mb-0 h-72 d-flex align-items-center border-bottom border-dark">
-          <%= link_to 'Home', root_path, 'data-name': 'Home', class: 'h-100 w-100 d-flex align-items-center text-decoration-none text-dark sidebar-item px-3 ls-6' %>
-        </li>
-        <li class="mb-0 h-72 d-flex align-items-center border-bottom border-dark">
-          <%= link_to 'Blog', posts_path, 'data-name': 'Blog', class: 'h-100 w-100 d-flex align-items-center text-decoration-none text-dark sidebar-item px-3 ls-6' %>
+          <%= link_to 'Blog', root_path, 'data-name': 'Home', class: 'h-100 w-100 d-flex align-items-center text-decoration-none text-dark sidebar-item px-3 ls-6' %>
         </li>
         <li class="mb-0 h-72 d-flex align-items-center border-bottom border-dark">
           <%= link_to 'Contact', root_path, 'data-name': 'Contact', class: 'h-100 w-100 d-flex align-items-center text-decoration-none text-dark sidebar-item px-3 ls-6' %>

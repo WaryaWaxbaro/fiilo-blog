@@ -26,7 +26,7 @@ class BlogElementsController < ApplicationController
     respond_to do |format|
       if @blog_element.save
         #format.html { redirect_to @blog_element, notice: "Blog element was successfully created." }
-        format.html { redirect_to edit_post_path(@blog_element.post), notice: "Blog element was successfully created." }
+        format.html { redirect_to edit_post_path(@blog_element.post_id), notice: "Blog element was successfully created." }
         format.json { render :show, status: :created, location: @blog_element }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +40,7 @@ class BlogElementsController < ApplicationController
     respond_to do |format|
       if @blog_element.update(blog_element_params)
         #format.html { redirect_to @blog_element, notice: "Blog element was successfully updated." }
-        format.html { redirect_to edit_post_path(@blog_element.post), notice: "Blog element was successfully updated." }
+        format.html { redirect_to edit_post_path(@blog_element.post_id), notice: "Blog element was successfully updated." }
         format.json { render :show, status: :ok, location: @blog_element }
       else
         format.html { render :edit, status: :unprocessable_entity }

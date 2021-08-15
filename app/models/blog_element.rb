@@ -1,5 +1,5 @@
 class BlogElement < ApplicationRecord
-  belongs_to :post
+  #belongs_to :post, dependent: :destroy
   has_rich_text :content
   has_one_attached :blog_image
 

@@ -1,63 +1,37 @@
-<main class="min-85vh">
-  <% if @posts && @posts.length > 0 %>
-    <div class="position-relative w-100 py-5 bg-dark-trans-4">
-      <div class="container">
-        <div class="max-width-550">
-          <p class="text-light mb-4" style="font-size: 12px;"><%= @posts[0].created_at.strftime("%d.%m.%Y %H:%M") %></p>
-          <h1 class="fs-1 text-light mb-3"><%= @posts[0].title %></h1>
-          <p class="text-light mb-4"><%= @posts[0].intro %></p>
-          <%= link_to 'Read more', post_path(@posts[0].slug), class: 'btn btn-light rounded-0 py-2' %>
-        </div>
-      </div>
-      <% if @posts[0].cover_image.attached? %>
-        <%= image_tag @posts[0].cover_image, class: 'position-absolute start-0 top-0 z-1 cover-img', alt: @posts[0].title %>
-        <% else %>
-        <%= image_tag get_random_img, class: 'position-absolute start-0 top-0 z-1 cover-img', alt: @posts[0].title %>
-      <% end %>
+<main class="min-85vh pt-5"  data-controller="blog" data-blog-target="mainContainer" data-per-page="10" data-query="" data-step="initial">
+  <div class="container">
+    <div class="p-sm-2 border-bottom my-2">
+      <h1 class="fs-3 fw-normal ls-6">Your Posts</h1>
     </div>
-  <% end %>
-  <div class="container my-5">
-    <div class="blog-cards w-100 d-flex flex-wrap">
-      <% @posts.each_with_index do |post, index| %>
-        <% if index > 0 %>
-          <div>
-            <div class="w-100p h-100 rounded-3 border shadow">
-              <div class="w-100 height-240 p-1">
-                <% if post.cover_image.attached? %>
-                  <%= image_tag post.cover_image, class: 'cover-img rounded-3', alt: 'alt' %>
-                <% else %>
-                  <%= image_tag get_random_img, class: 'cover-img rounded-3', alt: 'alt' %>
-                <% end %>
-              </div>
-              <div class="py-4 px-3">
-                <p class="" style="font-size: 12px"><%= post.created_at.strftime("%d.%m.%Y %H:%M") %></p>
-                <h2 class="fs-5 mb-3"><%= post.title %></h2>
-                <div class="d-flex align-items-center mb-2">
-                  <i class="fas fa-user"></i>
-                  <p class="mb-0 ms-2" style="font-size: 14px"><%= post.user.full_name %></p>
-                </div>
-                <div class="d-flex align-items-center">
-                  <i class="fas fa-tags"></i>
-                  <p class="mb-0 ms-2" style="font-size: 14px">
-                    <a href="">HTML</a>,
-                    <a href="">CSS</a>,
-                    <a href="">Rails</a>
-                  </p>
-                </div>
-                <div class="h-100 d-flex flex-column mt-4">
-                  <p class="mb-3" style="font-size: 14px;"><%= post.intro %></p>
-                  <div>
-                    <%= link_to 'Read more', post_path(post.slug), class: 'btn btn-dark rounded-0' %>
-                  </div>
-                </div>
-              </div>
+    <div class="p-sm-2">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="mb-3">
+            <label for="per_page" class="form-label fs-14 ls-1">Records per page</label>
+            <select class="form-select outline-none no-shadow-btn shadow ls-1" data-blog-target="perPage" data-action="blog#submitSeachQuery" aria-label="Default select example">
+              <option value="10">10</option>
+              <option value="25">25</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="mb-3">
+            <label for="search" class="form-label fs-14 ls-1">Search</label>
+            <div class="input-group mb-3">
+            <span class="input-group-text bg-gold" id="basic-search">
+              <i class="fas fa-search"></i>
+            </span>
+              <input type="text" data-blog-target="query" data-action="blog#submitSeachQuery" class="form-control outline-none no-shadow-btn shadow ls-1" placeholder="Name, email ...." aria-label="Search" aria-describedby="basic-search">
             </div>
           </div>
-        <% end %>
-      <% end %>
-      <div></div>
-      <div></div>
-      <div></div>
+        </div>
+      </div>
+    </div>
+    <div class="w-100 shadow rounded-3" data-users-target="blogTableContainer" id="blog-table-container">
+      <%= render 'posts/post', posts: @posts, pagy: @pagy  %>
     </div>
   </div>
 </main>
+
