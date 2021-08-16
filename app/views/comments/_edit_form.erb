@@ -1,0 +1,9 @@
+<%= form_with(model: comment) do |form| %>
+  <div class="mb-3">
+    <%= form.text_area :comment, class: 'form-control shadow', autofocus: true, rows: '3', placeholder: 'Your comments....' %>
+  </div>
+  <div class="text-end">
+    <%= button_tag "Cancel", :type => 'button', :class => "btn btn-sm btn-outline-dark rounded-0 shadow me-2", data: {action: "comments#toggleComment", id: comment.id} %>
+    <%= form.submit 'Update comment', class: 'btn btn-sm btn-dark rounded-0 shadow' %>
+  </div>
+<% end %>
