@@ -6,7 +6,7 @@
     <div>
       <h1 class="fs-2">Add new post</h1>
       <div class="mt-5">
-        <%= form_with(model: @post) do |form| %>
+        <%= form_with(model: [:authors, @post]) do |form| %>
           <% if @post.errors.any? %>
             <div id="error_explanation">
               <h2 class="fs-5 text-danger"><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -25,8 +25,8 @@
           </div>
 
           <div class="mb-5">
-            <%= form.label :intro, class: 'form-label' %>
-            <%= form.text_area :intro, class: 'form-control', rows: '10' %>
+            <%= form.label :intro, 'Introduction text (Summary text)', class: 'form-label' %>
+            <%= form.text_area :intro, class: 'form-control', rows: '4' %>
           </div>
 
           <div class="d-grid">

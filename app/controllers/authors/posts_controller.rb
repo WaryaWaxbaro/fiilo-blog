@@ -8,7 +8,7 @@ class Authors::PostsController < ApplicationController
     per_page = params[:per_page] || 10
     query = params[:query]
 
-    all_posts = current_user.admin? ? Post.all : current_user.posts
+    all_posts = current_user.admin? ? Post.all.order(created_at: :desc) : current_user.posts.order(created_at: :desc)
     all_posts = all_posts.search_for(query) unless query.blank?
     @current_page = page
     @pagy, @posts = pagy(all_posts, link_extra: 'data-remote="true"', page: page, items: per_page.to_i)

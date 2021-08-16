@@ -12,7 +12,11 @@ class Post < ApplicationRecord
   has_one_attached :cover_image
 
   scope :published, -> { where(publish: true) }
-  scope :published_at, -> { where('publish_at < ? ', DateTime.now) }
+  scope :published_at, -> { where('publish_at <= ?', DateTime.tomorrow) }
+
+  def value_to_i(value)
+    value.to_i
+  end
 
   def views_counter
     self.views_count += 1

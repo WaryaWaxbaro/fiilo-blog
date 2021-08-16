@@ -28,7 +28,7 @@
 
   <div class="mb-3">
     <%= form.label :publish_at, class: 'form-label' %>
-    <%= form.datetime_local_field :publish_at, class: 'form-control' %>
+    <%= form.datetime_local_field :publish_at, min: Date.today, class: 'form-control' %>
   </div>
 
   <% if post.cover_image.attached? %>
