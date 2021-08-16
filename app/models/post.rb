@@ -7,9 +7,15 @@ class Post < ApplicationRecord
 
   belongs_to :user
   has_many :blog_elements, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   has_one_attached :cover_image
 
   scope :published, -> { where(publish: true) }
   scope :published_at, -> { where('publish_at < ? ', DateTime.now) }
+
+  def views_counter
+    self.views_count += 1
+    save
+  end
 end

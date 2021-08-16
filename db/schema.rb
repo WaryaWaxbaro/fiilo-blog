@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_10_175231) do
+ActiveRecord::Schema.define(version: 2021_08_16_134820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -63,6 +63,15 @@ ActiveRecord::Schema.define(version: 2021_08_10_175231) do
     t.index ["post_id"], name: "index_blog_elements_on_post_id"
   end
 
+  create_table "comments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "post_id", null: false
+    t.text "comment"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.uuid "user_id", null: false
+    t.index ["post_id"], name: "index_comments_on_post_id"
+  end
+
   create_table "posts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "user_id", null: false
     t.string "title"
@@ -70,6 +79,7 @@ ActiveRecord::Schema.define(version: 2021_08_10_175231) do
     t.boolean "publish", default: false
     t.datetime "publish_at"
     t.string "slug"
+    t.integer "views_count", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
@@ -83,7 +93,7 @@ ActiveRecord::Schema.define(version: 2021_08_10_175231) do
     t.text "roles", default: ["member"], array: true
     t.string "phone"
     t.boolean "accept_terms", default: false
-    t.boolean "is_active", default: true
+    t.boolean "is_active", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "email", default: "", null: false
@@ -107,5 +117,6 @@ ActiveRecord::Schema.define(version: 2021_08_10_175231) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "blog_elements", "posts"
+  add_foreign_key "comments", "posts"
   add_foreign_key "posts", "users"
 end

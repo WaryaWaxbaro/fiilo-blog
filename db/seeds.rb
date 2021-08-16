@@ -6,8 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-=begin
-1.upto(119).each do |i|
+1.upto(120).each do |i|
   ran = rand(4)
   role = ["admin", "author", "member"]
   User.create(first_name: Faker::Name.first_name,
@@ -19,14 +18,17 @@
               phone: Faker::PhoneNumber.phone_number_with_country_code,
               accept_terms: true)
 end
-=end
 
 @users = User.all
+is_published = [1, 0]
 1.upto(200).each do |i|
   ran = rand(119)
+  ran_bool = rand(2)
   post = Post.create(title: Faker::Lorem.sentence(word_count: 15),
               intro: Faker::Lorem.paragraph(sentence_count: 10))
   post.user = @users[ran]
   post.slug = "#{post.title}".parameterize
+  post.publish = is_published[ran_bool]
+  post.publish_at = Date.yesterday
   post.save
 end

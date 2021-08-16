@@ -5,7 +5,7 @@ class PostsController < ApplicationController
     per_page = params[:per_page] || 15
     query = params[:query]
 
-    all_posts = Post.all
+    all_posts = Post.all.order(created_at: :desc)
     all_posts = all_posts.search_for(query) unless query.blank?
     @current_page = page
     @pagy, @posts = pagy(all_posts, link_extra: 'data-remote="true"', page: page, items: per_page.to_i)
@@ -19,6 +19,8 @@ class PostsController < ApplicationController
   # GET /posts/1 or /posts/1.json
   def show
     @post = Post.find_by(slug: params[:id])
+    @post.views_counter
+    @comment = Comment.new
   end
 
   private

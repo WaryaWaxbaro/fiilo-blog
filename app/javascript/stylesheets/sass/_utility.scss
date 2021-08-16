@@ -43,6 +43,13 @@
 .w-100p {
   width: 100%;
 }
+
+.w-sm-100 {
+  @media (max-width: 575.98px) {
+    width: 100% !important;
+  }
+}
+
 .max-width-350 {
   max-width: 350px;
 }

@@ -7,9 +7,9 @@ module ApplicationHelper
 
   def flash_messages(opts = {})
     flash.each do |msg_type, message|
-      concat(content_tag(:div, message, class: "position-absolute start-0 top-72 z-to-1200 w-100 text-center alert #{bootstrap_class_for(msg_type)} alert-dismissible fade show", role: "alert") do
+      concat(content_tag(:div, message, class: "position-fixed start-0 top-72 z-to-1200 w-100 text-center alert #{bootstrap_class_for(msg_type)} alert-dismissible fade show", role: "alert") do
         concat content_tag(:button, '', class: "btn-close", data: { bs_dismiss: 'alert' })
-        concat message
+        concat message unless message == "true"
       end)
     end
     nil
