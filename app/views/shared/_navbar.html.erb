@@ -15,7 +15,7 @@
             </li>
             <% if current_user&.admin? || current_user&.author? %>
               <li class="mb-0 me-3 h-100 d-flex align-items-center">
-                <%= link_to 'Manage blog', authors_posts_path, 'data-name': 'blog', class: 'h-100 d-flex align-items-center text-decoration-none text-dark navbar-item ls-6' %>
+                <%= link_to 'Manage blog', authors_posts_path, 'data-name': 'authors', class: 'h-100 d-flex align-items-center text-decoration-none text-dark navbar-item ls-6' %>
               </li>
             <% end %>
             <% if current_user&.admin? %>
@@ -61,7 +61,7 @@
         </li>
         <% if current_user&.admin? || current_user&.author? %>
           <li class="mb-0 h-72 d-flex align-items-center border-bottom border-dark">
-            <%= link_to 'Manage blog', authors_posts_path, 'data-name': 'posts', class: 'h-100 w-100 d-flex align-items-center text-decoration-none text-dark sidebar-item px-3 ls-6' %>
+            <%= link_to 'Manage blog', authors_posts_path, 'data-name': 'authors', class: 'h-100 w-100 d-flex align-items-center text-decoration-none text-dark sidebar-item px-3 ls-6' %>
           </li>
         <% end %>
         <% if current_user&.admin? %>

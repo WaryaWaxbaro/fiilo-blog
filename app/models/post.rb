@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
   include PgSearch::Model
   pg_search_scope :search_for, against: %i(title intro), associated_against: {
-    user: [:first_name, :last_name, :email]
+    user: [:first_name, :last_name]
     #blog_element: [:content],
   }
 
@@ -13,6 +13,9 @@ class Post < ApplicationRecord
 
   scope :published, -> { where(publish: true) }
   scope :published_at, -> { where('publish_at <= ?', DateTime.tomorrow) }
+
+  validates :title, length: {minimum: 5}, presence: true
+  validates :intro, length: {minimum: 5}, presence: true
 
   def value_to_i(value)
     value.to_i

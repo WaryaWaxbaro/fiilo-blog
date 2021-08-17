@@ -9,9 +9,9 @@
         <%= form_with(model: [:authors, @post]) do |form| %>
           <% if @post.errors.any? %>
             <div id="error_explanation">
-              <h2 class="fs-5 text-danger"><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+              <h2 class="fs-6 text-danger"><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
 
-              <ul class="text-dark" style="font-size: 14px;">
+              <ul class="text-danger" style="font-size: 14px;">
                 <% @post.errors.each do |error| %>
                   <li><%= error.full_message %></li>
                 <% end %>

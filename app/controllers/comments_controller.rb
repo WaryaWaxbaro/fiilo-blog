@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: %i[ show edit update destroy ]
+  before_action :set_post, only: %i[ create ]
 
   # GET /comments or /comments.json
   def index
@@ -22,14 +23,15 @@ class CommentsController < ApplicationController
   # POST /comments or /comments.json
   def create
     @comment = Comment.new(comment_params)
+    @comment.post = @post
     @comment.user = current_user if current_user
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to post_path(@comment.post.slug), notice: "Comment was successfully created." }
+        format.html { redirect_to post_path(@comment.post.slug), notice: "Your comment has been added." }
         format.json { render :show, status: :created, location: @comment }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { redirect_to post_path(@post.slug), alert: 'Comment cannot be empty' }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
@@ -39,10 +41,10 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to post_path(@comment.post.slug), notice: "Comment was successfully updated." }
+        format.html { redirect_to post_path(@comment.post.slug), notice: "Your comment has been updated." }
         format.json { render :show, status: :ok, location: @comment }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html { redirect_to post_path(@comment.post.slug), alert: 'Could not update your comment.' }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
@@ -63,8 +65,12 @@ class CommentsController < ApplicationController
       @comment = Comment.find(params[:id])
     end
 
+    def set_post
+      @post = Post.find(params[:post_id])
+    end
+
     # Only allow a list of trusted parameters through.
     def comment_params
-      params.require(:comment).permit(:post_id, :comment)
+      params.require(:comment).permit(:comment)
     end
 end

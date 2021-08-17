@@ -45,7 +45,7 @@ class Authors::PostsController < ApplicationController
         format.html { redirect_to edit_authors_post_path(@post), notice: "Post was successfully created." }
         format.json { render :show, status: :created, location: @post }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render 'authors/posts/new', status: :unprocessable_entity }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
@@ -58,7 +58,7 @@ class Authors::PostsController < ApplicationController
         format.html { redirect_to edit_authors_post_path(@post), notice: "Post was successfully updated." }
         format.json { render :show, status: :ok, location: @post }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html {redirect_to edit_authors_post_path(@post), alert: 'Could not update the post.' }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end

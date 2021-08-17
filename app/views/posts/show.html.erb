@@ -16,10 +16,12 @@
     <div class="max-width-680 mx-auto pt-5">
       <div class="text-end">
         <% if current_user&.admin? %>
+            <%= link_to 'Back', "javascript:history.back()", class: 'btn btn-dark rounded-0 ms-3' %>
             <%= link_to 'Edit post', edit_authors_post_path(@post), class: 'btn btn-dark rounded-0' %>
         <% end %>
         <% if current_user&.author? && @post.user == current_user %>
-          <%= link_to 'Edit post', edit_post_path(@post), class: 'btn btn-dark rounde-0' %>
+          <%= link_to 'Back', "javascript:history.back()", class: 'btn btn-dark rounded-0 ms-3' %>
+          <%= link_to 'Edit post', edit_authors_post_path(@post), class: 'btn btn-dark rounded-0' %>
         <% end %>
       </div>
       <p class="mb-3 d-flex">
@@ -79,7 +81,7 @@
             </div>
             <% if current_user == comment.user %>
               <div id="edit-form-<%= comment.id %>" class="w-100 h-100 d-none invisible">
-                <%= render 'comments/edit_form', comment: comment %>
+                <%= render 'comments/edit_form', comment: comment, post:@post %>
               </div>
             <% end %>
           </div>

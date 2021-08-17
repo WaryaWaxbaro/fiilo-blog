@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
-  resources :comments, only: [:create, :update]
+  #resources :comments, only: [:create, :update]
   root 'home#index'
   match "/404", to: "errors#not_found", via: :all
   match "/500", to: "errors#internal_server_error", via: :all
 
   resources :blog_elements
-  resources :posts, :path => 'blog', only: [:index, :show]
+  resources :posts, :path => 'blog', only: [:index, :show] do
+    resources :comments, only: [:create, :update]
+  end
   resources :users
 
   devise_for :users, :path => '', :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" }

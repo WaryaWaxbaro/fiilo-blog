@@ -1,9 +1,9 @@
 <div class="blog-cards w-100 d-flex flex-wrap">
   <% if posts.length < 1 %>
-  <p class="text-center">No posts</p>
+    <p class="text-center">No posts</p>
   <% end %>
   <% posts.each_with_index do |post, index| %>
-    <% if index > 0 %>
+    <% if index >= 0 %>
       <div>
         <div class="w-100p h-100 rounded-3 border shadow">
           <div class="w-100 height-240 p-1">
