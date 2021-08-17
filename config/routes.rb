@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :tags
   #resources :comments, only: [:create, :update]
   root 'home#index'
   match "/404", to: "errors#not_found", via: :all
