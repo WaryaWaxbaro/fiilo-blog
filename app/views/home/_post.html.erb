@@ -2,8 +2,13 @@
   <% if posts.length < 1 %>
     <p class="text-center">No posts</p>
   <% end %>
+  <% if posts.length > 1 %>
+    <% @first_post = posts[0] %>
+  <% else %>
+    <% @first_post = nil %>
+  <% end %>
   <% posts.each_with_index do |post, index| %>
-    <% if index >= 0 %>
+    <% if index >= 0 && @first_post&.id != post.id %>
       <div>
         <div class="w-100p h-100 rounded-3 border shadow">
           <div class="w-100 height-240 p-1">
@@ -28,7 +33,7 @@
                 <a href="">Rails</a>
               </p>
             </div>
-            <div class="h-100 d-flex flex-column mt-4">
+            <div class="d-flex flex-column justify-content-between mt-4">
               <p class="mb-3" style="font-size: 14px;"><%= post.intro %></p>
               <div class="">
                 <%= link_to 'Read more', post_path(post.slug), class: 'btn btn-dark rounded-0' %>
