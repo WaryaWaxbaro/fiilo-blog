@@ -26,10 +26,10 @@
           <div class="min-w-200 mb-4 mx-auto mx-sm-0">
             <ul class="list-unstyled">
               <li class="text-center-sm">
-                <button class="text-light ls-6 bg-transparent border-0">Terms</button>
+                <button class="text-light ls-6 bg-transparent border-0" data-bs-toggle="modal" data-bs-target="#termsModal">Terms</button>
               </li>
               <li class="text-center-sm">
-                <button class="text-light ls-6 bg-transparent border-0">Privacy</button>
+                <button class="text-light ls-6 bg-transparent border-0"  data-bs-toggle="modal" data-bs-target="#privacyModal">Privacy</button>
               </li>
             </ul>
           </div>
@@ -43,3 +43,6 @@
     </div>
   </div>
 </footer>
+
+<%= render 'modal/terms' %>
+<%= render 'modal/privacy' %>
