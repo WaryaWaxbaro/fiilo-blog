@@ -14,7 +14,7 @@ export default class extends Controller {
 
         Rails.ajax({
             type: 'get',
-            url: `/tags.json?post_id`,
+            url: `/authors/tags.json?post_id`,
             success: function (response){
                 console.log({response})
                 let tags = response;
@@ -30,7 +30,7 @@ export default class extends Controller {
         let element = event.target;
         Rails.ajax({
             type: 'get',
-            url: `/tags.json?post_id=${post_id}&query=${element.value}`,
+            url: `/authors/tags.json?post_id=${post_id}&query=${element.value}`,
             success: function (response){
                 console.log('success ', response)
                 let tags = response;
@@ -59,15 +59,13 @@ export default class extends Controller {
         let post_id = document.getElementById('tags_post_id').value
         let element = event.target;
         let tagId = element.dataset.tagId
-        console.log({tagId})
         let formData = new FormData();
-        formData.append('id', tagId);
         formData.append('post_id', post_id)
-        //?id=${tagId}&post_id=${post_id}
+        formData.append('id', tagId)
         Rails.ajax({
-            type: 'post',
+            type: 'put',
             data: formData,
-            url: `/tags/update_post_tags`,
+            url: `/authors/tags/${tagId}`,
             success: function (response){
                 console.log(response)
             },
@@ -85,7 +83,7 @@ export default class extends Controller {
             Rails.ajax({
                 type: 'post',
                 data: tagFormDate,
-                url: '/tags',
+                url: '/authors/tags',
                 success: function (response){
                     console.log('success ', response)
                 },
@@ -104,7 +102,7 @@ export default class extends Controller {
         if(tag_id){
             Rails.ajax({
                 type: 'delete',
-                url: `/tags/${tag_id}?post_id=${post_id}`,
+                url: `/authors/tags/${tag_id}?post_id=${post_id}`,
                 success: function (response){
                     console.log('success ', response)
                 },
