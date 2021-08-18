@@ -1,0 +1,42 @@
+<%= form_with(model: [:admin, contact]) do |form| %>
+  <% if contact.errors.any? %>
+    <div id="error_explanation">
+      <h2 class="text-danger" style="font-size: 12px;"><%= pluralize(contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
+
+      <ul class="text-danger" style="font-size: 12px;">
+        <% contact.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :name, class: 'form-label' %>
+    <%= form.text_field :name, class: 'form-control rounded-0' %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :email, class: 'form-label' %>
+    <%= form.text_field :email, class: 'form-control rounded-0' %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :phone, class: 'form-label' %>
+    <%= form.text_field :phone, class: 'form-control rounded-0' %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :message, class: 'form-label' %>
+    <%= form.text_area :message, rows: 3, class: 'form-control rounded-0' %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :extra_info, class: 'form-label' %>
+    <%= form.text_area :extra_info, rows: 3, class: 'form-control rounded-0' %>
+  </div>
+
+  <div class="d-grid my-3">
+    <%= form.submit class: 'btn btn-dark round-0' %>
+  </div>
+<% end %>

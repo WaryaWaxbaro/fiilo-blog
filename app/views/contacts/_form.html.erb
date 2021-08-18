@@ -1,42 +1,29 @@
 <%= form_with(model: contact) do |form| %>
   <% if contact.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
-
-      <ul>
-        <% contact.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
+    <p class="text-danger my-3">Please fill all the required fields marked with *</p>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="mb-3">
+    <%= form.label :name, 'Name *', class: 'form-label' %>
+    <%= form.text_field :name, class: 'form-control rounded-0' %>
   </div>
 
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
+  <div class="mb-3">
+    <%= form.label :email, 'Email *', class: 'form-label' %>
+    <%= form.text_field :email, class: 'form-control rounded-0' %>
   </div>
 
-  <div class="field">
-    <%= form.label :phone %>
-    <%= form.text_field :phone %>
+  <div class="mb-3">
+    <%= form.label :phone, class: 'form-label' %>
+    <%= form.text_field :phone, class: 'form-control rounded-0' %>
   </div>
 
-  <div class="field">
-    <%= form.label :message %>
-    <%= form.text_area :message %>
+  <div class="mb-3">
+    <%= form.label :message, 'Message *', class: 'form-label' %>
+    <%= form.text_area :message, rows: 3, class: 'form-control rounded-0' %>
   </div>
 
-  <div class="field">
-    <%= form.label :extra_info %>
-    <%= form.text_area :extra_info %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="d-grid my-3">
+    <%= form.submit 'Submit', class: 'btn btn-dark rounded-0' %>
   </div>
 <% end %>

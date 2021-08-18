@@ -1,0 +1,3 @@
+var contact_table_container = document.getElementById("contacts-table-container")
+contact_table_container.dataset.currentPage = "<%= escape_javascript(@current_page) %>"
+contact_table_container.innerHTML = "<%= escape_javascript(render partial: 'admin/contacts/contact', locals: { contacts: @contacts, pagy: @pagy} ) %>";

@@ -1,0 +1,36 @@
+<main class="min-85vh pt-5"  data-controller="admin-contact" data-admin-contact-target="mainContainer" data-per-page="10" data-query="" data-step="initial">
+  <div class="container">
+    <div class="p-sm-2 border-bottom my-2">
+      <h1 class="fs-3 fw-normal ls-6">Contacts</h1>
+    </div>
+    <div class="p-sm-2">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="mb-3">
+            <label for="per_page" class="form-label fs-14 ls-1">Records per page</label>
+            <select class="form-select outline-none no-shadow-btn shadow ls-1" data-admin-contact-target="perPage" data-action="admin-contact#submitSeachQuery" aria-label="Default select example">
+              <option value="10">10</option>
+              <option value="25">25</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="mb-3">
+            <label for="search" class="form-label fs-14 ls-1">Search</label>
+            <div class="input-group mb-3">
+            <span class="input-group-text bg-gold" id="basic-search">
+              <i class="fas fa-search"></i>
+            </span>
+              <input type="text" data-admin-contact-target="query" data-action="admin-contact#submitSeachQuery" class="form-control outline-none no-shadow-btn shadow ls-1" placeholder="Name, email ...." aria-label="Search" aria-describedby="basic-search">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-100 shadow rounded-3" data-admin-contact-target="contactsTableContainer" id="contacts-table-container">
+      <%= render 'admin/contacts/contact', contacts: @contacts, pagy: @pagy  %>
+    </div>
+  </div>
+</main>

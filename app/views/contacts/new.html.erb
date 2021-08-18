@@ -1,5 +1,11 @@
-<h1>New Contact</h1>
-
-<%= render 'form', contact: @contact %>
-
-<%= link_to 'Back', contacts_path %>
+<main class="min-80vh py-4">
+  <div class="d-flex flex-column justify-content-center align-items-center px-2">
+    <h1 class="fs-2 mb-4">Contact</h1>
+    <p>For enquiries and any other issue related to our website, please contact us by filling the below form.</p>
+  </div>
+  <div class="container">
+    <div class="max-width-680 mx-auto py-3">
+      <%= render 'form', contact: @contact %>
+    </div>
+  </div>
+</main>

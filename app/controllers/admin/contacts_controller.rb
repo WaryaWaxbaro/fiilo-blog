@@ -1,10 +1,21 @@
-class ContactsController < ApplicationController
+class Admin::ContactsController < ApplicationController
   before_action :set_contact, only: %i[ show edit update destroy ]
 
   # GET /contacts or /contacts.json
   def index
-    #@contacts = Contact.all
-    @contact = Contact.new
+    page = params[:page] || 1
+    per_page = params[:per_page] || 10
+    query = params[:query]
+
+    contacts_all = Contact.all.order(created_at: :desc)
+    contacts_all = contacts_all.search_for(query) unless query.blank?
+    @current_page = page
+    @pagy, @contacts = pagy(contacts_all, link_extra: 'data-remote="true"', page: page, items: per_page.to_i)
+
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 
   # GET /contacts/1 or /contacts/1.json
@@ -26,8 +37,8 @@ class ContactsController < ApplicationController
 
     respond_to do |format|
       if @contact.save
-        format.html { redirect_to thank_you_path}
-        format.json { render :show, status: :created, location: @contact }
+        format.html { redirect_to admin_contact_path(@contact), notice: "Contact was successfully created." }
+        format.json { render :show, status: :created, location: admin_contact_path(@contact) }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @contact.errors, status: :unprocessable_entity }
@@ -39,8 +50,8 @@ class ContactsController < ApplicationController
   def update
     respond_to do |format|
       if @contact.update(contact_params)
-        format.html { redirect_to @contact, notice: "Contact was successfully updated." }
-        format.json { render :show, status: :ok, location: @contact }
+        format.html { redirect_to admin_contact_path(@contact), notice: "Contact was successfully updated." }
+        format.json { render :show, status: :ok, location: admin_contact_path(@contact) }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @contact.errors, status: :unprocessable_entity }
@@ -52,7 +63,7 @@ class ContactsController < ApplicationController
   def destroy
     @contact.destroy
     respond_to do |format|
-      format.html { redirect_to contacts_url, notice: "Contact was successfully destroyed." }
+      format.html { redirect_to admin_contacts_url, notice: "Contact was successfully destroyed." }
       format.json { head :no_content }
     end
   end
