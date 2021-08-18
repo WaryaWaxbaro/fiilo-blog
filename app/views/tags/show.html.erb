@@ -1,9 +1,24 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @tag.name %>
-</p>
-
-<%= link_to 'Edit', edit_tag_path(@tag) %> |
-<%= link_to 'Back', tags_path %>
+<main class="min-85vh">
+  <div class="container">
+    <div class="max-width-680 mx-auto shadow p-3 mt-4">
+      <div class="text-end my-3">
+        <%= link_to 'Edit', edit_tag_path(@tag), class: 'btn btn-outline-dark rounded-0 me-3' %>
+        <%= link_to 'Back', tags_path, class: 'btn btn-dark rounded-0' %>
+      </div>
+      <div>
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <td>Name</td>
+              <td><%= @tag.name %></td>
+            </tr>
+            <tr>
+              <td>Posts</td>
+              <td><%= @tag.posts.count %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>

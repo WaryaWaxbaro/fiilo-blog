@@ -1,9 +1,9 @@
 <%= form_with(model: tag) do |form| %>
   <% if tag.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(tag.errors.count, "error") %> prohibited this tag from being saved:</h2>
+      <h2 class="text-danger" style="font-size: 14px"><%= pluralize(tag.errors.count, "error") %> prohibited this tag from being saved:</h2>
 
-      <ul>
+      <ul class="text-danger" style="font-size: 14px">
         <% tag.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
@@ -11,12 +11,12 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="mb-3">
+    <%= form.label :name, class: 'form-label' %>
+    <%= form.text_field :name, class: 'form-control rounded-0' %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="d-grid">
+    <%= form.submit class: 'btn btn-dark rounded-0' %>
   </div>
 <% end %>

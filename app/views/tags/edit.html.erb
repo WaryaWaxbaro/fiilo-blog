@@ -1,6 +1,12 @@
-<h1>Editing Tag</h1>
-
-<%= render 'form', tag: @tag %>
-
-<%= link_to 'Show', @tag %> |
-<%= link_to 'Back', tags_path %>
+<main class="min-85vh">
+  <div class="container">
+    <div class="max-width-550 mx-auto shadow p-3 mt-4">
+      <h2 class="fs-2 my-3 text-center">Editing Tag</h2>
+      <div class="text-end my-3">
+        <%= link_to 'Show', @tag, class: 'btn btn-outline-dark rounded-0 me-3' %>
+        <%= link_to 'Back', tags_path, class: 'btn btn-dark rounded-0' %>
+      </div>
+      <%= render 'form', tag: @tag %>
+    </div>
+  </div>
+</main>

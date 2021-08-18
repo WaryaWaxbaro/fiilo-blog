@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :contacts
   resources :tags do
     collection do
       post '/update_post_tags', to: "tags#update_post_tags", as: 'update_post_tags'
