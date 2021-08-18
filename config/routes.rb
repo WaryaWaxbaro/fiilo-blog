@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   #resources :comments, only: [:create, :update]
   root 'home#index'
   get 'thank-you', to: 'home#thank_you', as: 'thank-you'
+  get 'about', to: 'home#about', as: 'about'
   match "/404", to: "errors#not_found", via: :all
   match "/500", to: "errors#internal_server_error", via: :all
 

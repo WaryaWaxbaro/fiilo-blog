@@ -16,6 +16,8 @@ class HomeController < ApplicationController
   end
 
   def thank_you
+  end
 
+  def about
   end
 end
