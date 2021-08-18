@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :tags
+  resources :tags do
+    collection do
+      post '/update_post_tags', to: "tags#update_post_tags", as: 'update_post_tags'
+    end
+  end
   #resources :comments, only: [:create, :update]
   root 'home#index'
   match "/404", to: "errors#not_found", via: :all

@@ -1,9 +1,17 @@
 class TagsController < ApplicationController
-  before_action :set_tag, only: %i[ show edit update destroy ]
+  before_action :set_tag, only: %i[ show edit update destroy update_post_tags]
+  before_action :set_post, only: %i[ index create update_post_tags destroy]
 
   # GET /tags or /tags.json
   def index
-    @tags = Tag.all
+    query = params[:query]
+    posts = @post.tags.map(&:id)
+    @tags = Tag.all.where.not(id: posts).where("lower(name) LIKE ?", "%#{query}%".downcase)
+    if query.present?
+      @tags = @tags.where("lower(name) LIKE ?", "%#{query}%".downcase)
+    else
+      @tags
+    end
   end
 
   # GET /tags/1 or /tags/1.json
@@ -25,11 +33,12 @@ class TagsController < ApplicationController
 
     respond_to do |format|
       if @tag.save
-        format.html { redirect_to @tag, notice: "Tag was successfully created." }
-        format.json { render :show, status: :created, location: @tag }
+        Tagging.create(tag_id: @tag.id, post_id: @post.id)
+        format.html { redirect_to edit_authors_post_path(@post), notice: "Tag was successfully created." }
+        format.json { render json: {success: 'success'}, status: :created}
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @tag.errors, status: :unprocessable_entity }
+        format.html { redirect_to edit_authors_post_path(@post), alert: 'Error. Could not add the tag.' }
+        format.json { render json: {error: @tag.errors}, status: :unprocessable_entity }
       end
     end
   end
@@ -47,12 +56,32 @@ class TagsController < ApplicationController
     end
   end
 
+  def update_post_tags
+    tagging = Tagging.new(tag_id: @tag.id, post_id: @post.id)
+    respond_to do |format|
+      if tagging.save
+        format.html { redirect_to edit_authors_post_path(@post), notice: "Tag was successfully added to the post." }
+        format.json { render json: {success: 'success'}}
+      else
+        format.html { redirect_to edit_authors_post_path(@post), notice: "Error. Could not add tag to the post" }
+        format.json { render json: {error: 'error'}}
+      end
+    end
+  end
+
   # DELETE /tags/1 or /tags/1.json
   def destroy
-    @tag.destroy
+    tagging = Tagging.where(tag_id: @tag.id, post_id: @post.id).first
+    #@tag.destroy
     respond_to do |format|
-      format.html { redirect_to tags_url, notice: "Tag was successfully destroyed." }
-      format.json { head :no_content }
+      if tagging
+        tagging.destroy
+        format.html { redirect_to edit_authors_post_path(@post), notice: "Tag was successfully destroyed." }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to edit_authors_post_path(@post), notice: "Error deleting the tag." }
+        format.json { head :no_content }
+      end
     end
   end
 
@@ -62,8 +91,13 @@ class TagsController < ApplicationController
       @tag = Tag.find(params[:id])
     end
 
+  def set_post
+    @post = Post.find(params[:post_id])
+  end
+
     # Only allow a list of trusted parameters through.
     def tag_params
-      params.require(:tag).permit(:name)
+      #params.require(:tag).permit(:name)
+      params.permit(:name, :post_id)
     end
 end

@@ -11,18 +11,27 @@ class Post < ApplicationRecord
 
   has_one_attached :cover_image
 
+  has_many :taggings
+  has_many :tags, through: :taggings
+
   scope :published, -> { where(publish: true) }
   scope :published_at, -> { where('publish_at <= ?', DateTime.tomorrow) }
 
   validates :title, length: {minimum: 5}, presence: true
   validates :intro, length: {minimum: 5}, presence: true
 
-  def value_to_i(value)
-    value.to_i
-  end
-
   def views_counter
     self.views_count += 1
     save
+  end
+
+  def tag_list
+    tags.map(&:name).join(',')
+  end
+
+  def tag_list=(names)
+    self.tags = names.split(',').map do |n|
+      Tag.where(name: n.strip).first_or_create!
+    end
   end
 end
