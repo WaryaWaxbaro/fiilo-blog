@@ -12,10 +12,16 @@ export default class extends Controller {
     }
 
     submitSeachQuery(event){
+        let element = event.target;
+        let tag = null;
+        if(element && element.dataset.tag){
+            tag = element.dataset.tag;
+        }
         let queryObj = {
             per_page: this.perPageTarget.value,
             query: this.queryTarget.value,
-            page: 1
+            page: 1,
+            tag: tag
         }
 
         if(queryObj.query){

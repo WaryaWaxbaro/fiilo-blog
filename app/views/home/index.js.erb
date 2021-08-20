@@ -1,3 +1,4 @@
 var home_posts_container = document.getElementById("home-posts-container")
 home_posts_container.dataset.currentPage = "<%= escape_javascript(@current_page) %>"
+home_posts_container.dataset.tag = "<%= escape_javascript(@tag) %>"
 home_posts_container.innerHTML = "<%= escape_javascript(render partial: 'home/post', locals: { posts: @posts, pagy: @pagy} ) %>";
