@@ -174,3 +174,18 @@ import "../stylesheets/application"
 
 - To install run `yarn add @fortawesome/fontawesome-free` or `npm install --save @fortawesome/fontawesome-free`
 - Add `import "@fortawesome/fontawesome-free/js/all";` to `/javascript/packs/application.js`
+
+# Add tags to the Posts
+
+```
+rails generate model tag name
+
+rails generate model tagging tag:belongs_to post:belongs_to
+
+class Tag < ApplicationRecord
+  has_many :taggings
+  has_many :posts, through: :taggings
+end
+
+
+```
