@@ -7,6 +7,7 @@ class CreatePosts < ActiveRecord::Migration[6.1]
       t.boolean :publish, default: false
       t.datetime :publish_at
       t.string :slug
+      t.string :category
       t.integer :views_count, default: 0
 
       t.timestamps

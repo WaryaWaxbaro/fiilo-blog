@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 2021_08_18_094641) do
     t.boolean "publish", default: false
     t.datetime "publish_at"
     t.string "slug"
+    t.string "category"
     t.integer "views_count", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
