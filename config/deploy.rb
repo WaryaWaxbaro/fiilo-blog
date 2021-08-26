@@ -2,7 +2,7 @@
 lock "~> 3.16.0"
 
 set :application, "fiilo-blog"
-set :repo_url, "git@github.com:WaryaWaxbaro/fiilo-blog.git"
+
 
 # Deploy to the user's home directory
 set :deploy_to, "/home/deploy/#{fetch :application}"
